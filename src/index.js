@@ -70,3 +70,29 @@ console.log(
 
 console.log(isAnagram('dwarf', 'garden'));
 
+// Check Anagram #2
+function checkAnagram(str1, str2) {
+    const sep = '';
+    str1 = str1.toLowerCase().replace(/[^a-z]/g, sep);
+    str2 = str2.toLowerCase().replace(/[^a-z]/g, sep);
+
+    if (str1.length !== str2.length) return false;
+
+    const lettersFreq = {};
+    for (let i = 0; i < str1.length; i++) {
+        lettersFreq[str1[i]] = (lettersFreq[str1[i]] || 0) + 1;
+    }
+
+    for (let i = 0; i < str2.length; i++) {
+        if (lettersFreq[str2[i]] === undefined || lettersFreq[str2[i]] === 0)
+            return false;
+
+        lettersFreq[str2[i]]--;
+    }
+    return true;
+}
+
+console.log('----Check Anagram #2----');
+console.log(checkAnagram('grass', 'goat'));
+console.log(checkAnagram('The detectives', 'Detect thieves'));
+console.log(checkAnagram('Heavy Rain? ', 'Hire a navy!'));
